@@ -1,0 +1,12 @@
+[package]
+name = "sel4-rs-bind"
+version = "0.1.0"
+authors = ["Florian Büstgens <florian.buestgens@efficient-dev.com>"]
+edition = "2021"
+repository = "https://codeberg.org/enso/sel4-rs-bind"
+readme = "RADME.md"
+license = "BSD-2-Clause"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
