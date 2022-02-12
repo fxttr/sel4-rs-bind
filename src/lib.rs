@@ -36,6 +36,9 @@
 #![feature(lang_items, core_intrinsics, asm, naked_functions, llvm_asm)]
 #![cfg_attr(any(atarget_arch = "aarch64", all(target_arch = "arm", target_pointer_width = "32")),feature(global_asm))]
 
+use core::panic::PanicInfo;
+use sel4_rs_runtime::dbg::DbgOutput;
+
 static PROG: &'static [u8] = b"rootserver\0";
 static ENV_STR: &'static [u8] = b"seL4=1\0\0";
 const STACK_SIZE: usize = 1024 * 68;
@@ -76,7 +79,7 @@ pub unsafe extern "C" fn __sel4_start_init_boot_info(bootinfo: *mut seL4_BootInf
 }
 
 pub fn dbg_panic_handler(info: &PanicInfo) -> ! {
-    writeln!(DebugOutHandle, "!!! Fatal: {:#?}", info);
+    writeln!(DbgOutput, "!!! Fatal: {:#?}", info);
 
     unsafe {
         core::intrinsics::abort();
